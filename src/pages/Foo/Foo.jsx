@@ -1,7 +1,13 @@
 import React from "react";
+import { setFoo, setBar } from "@/actions";
+import { Item } from "@/components";
 
-export default () => {
+export default ({ foo, bar }) => {
   return (
-    <div>Foo</div>
+    <div>
+      <Item/>
+      <div>Foo: <input value={foo} onInput={e => setFoo(e.target.value)}/></div>
+      <div>Bar: <input value={bar} onInput={e => setBar(e.target.value)}/></div>
+    </div>
   );
 }

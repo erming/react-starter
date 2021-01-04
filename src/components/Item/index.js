@@ -1,4 +1,4 @@
-import Foo from "./Foo";
+import Item from "./Item";
 import { connect } from "react-redux";
 
 const mapState = (state) => ({
@@ -6,4 +6,4 @@ const mapState = (state) => ({
   bar: state.example.bar
 });
 
-export default connect(mapState)(Foo);
+export default connect(mapState)(Item);

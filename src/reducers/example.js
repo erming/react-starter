@@ -4,8 +4,8 @@ import {
 } from "../types";
 
 const initialState = {
-  foo: "",
-  bar: ""
+  foo: "a",
+  bar: "b"
 };
 
 export default (state = initialState, action) => {
