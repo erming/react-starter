@@ -1,13 +1,12 @@
-import React from "react";
-import { setFoo, setBar } from "@/actions";
-import { Item } from "@/components";
+import { Fragment } from "react";
+import { Example } from "@/components";
 
-export default ({ foo, bar }) => {
+export default ({ foo }) => {
   return (
-    <div>
-      <Item/>
-      <div>Foo: <input value={foo} onInput={e => setFoo(e.target.value)}/></div>
-      <div>Bar: <input value={bar} onInput={e => setBar(e.target.value)}/></div>
-    </div>
+    <Fragment>
+      <Example>
+        <div>{foo}</div>
+      </Example>
+    </Fragment>
   );
 }

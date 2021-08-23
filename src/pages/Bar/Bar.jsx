@@ -1,7 +1,12 @@
-import React from "react";
+import { Fragment } from "react";
+import { Example } from "@/components";
 
-export default () => {
+export default ({ bar }) => {
   return (
-    <div>Bar</div>
+    <Fragment>
+      <Example>
+        <div>{bar}</div>
+      </Example>
+    </Fragment>
   );
 }
