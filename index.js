@@ -1,10 +1,15 @@
+require("dotenv").config();
+
 const express = require("express");
 const compression = require("compression");
 const profile = require("response-time");
-const config = require("./config");
+
+const {
+  HOST,
+  PORT,
+} = process.env;
 
 const app = express();
-const port = config.server.port;
 
 app.use(compression());
 app.use(profile());
@@ -18,9 +23,9 @@ app.get("*", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
 
-app.listen(port, () => {
+app.listen(PORT, () => {
   console.log("");
-  console.log("Listening on http://localhost:" + port);
+  console.log("Listening on http://127.0.0.1:" + PORT);
   console.log("Ctrl-c to stop");
   console.log("");
 });
