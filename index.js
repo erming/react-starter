@@ -1,29 +1,35 @@
 require("dotenv").config();
 
-const express = require("express");
-const compression = require("compression");
-const profile = require("response-time");
+const fastify = require("fastify");
+const path = require("path");
+const compress = require("fastify-compress");
+const etag = require("fastify-etag");
+const static = require("fastify-static");
 
 const {
   HOST,
   PORT,
 } = process.env;
 
-const app = express();
+const app = fastify();
 
-app.use(compression());
-app.use(profile());
-app.use(express.static("public"));
+app.register(compress, {
+  encodings: ["gzip"],
+  threshold: 2048
+});
+app.register(etag);
+app.register(static, {
+  root: path.join(__dirname, "/public")
+});
 
 app.get("/favicon.*", (req, res) => {
-  res.sendStatus(204);
+  res.code(204).send();
 });
 
-app.get("*", (req, res) => {
-  res.sendFile(__dirname + "/public/index.html");
-});
-
-app.listen(PORT, () => {
+app.listen({
+  host: HOST,
+  port: PORT,
+}, () => {
   console.log("");
   console.log("Listening on http://127.0.0.1:" + PORT);
   console.log("Ctrl-c to stop");
